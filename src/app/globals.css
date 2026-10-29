@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #08080a;
+  --color-panel: #101014;
+  --color-panel-2: #16161b;
+  --color-line: #2a2a32;
+  --color-bone: #ecebf0;
+  --color-mute: #8d8c97;
+  --color-accent: #7c4dff; /* preenchimentos (texto branco por cima) */
+  --color-accent-soft: #a98bff; /* texto e detalhes sobre fundo escuro */
+  --font-dot: "Doto", "DotGothic16", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+:root {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Entrada do hero: só começa quando a abertura termina */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.8s var(--ease) both;
+}
+.hero-in {
+  opacity: 0;
+}
+.intro-done .hero-in {
+  animation: fade-up 0.8s var(--ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent-soft);
+  outline-offset: 2px;
+}
+
+/* Mapa no tema escuro */
+.leaflet-container {
+  background: #0b0b0e;
+  font-family: var(--font-mono);
+}
+.leaflet-tile-pane {
+  filter: grayscale(1) invert(1) brightness(0.85) contrast(0.95);
+}
+.leaflet-control-attribution {
+  background: rgba(8, 8, 10, 0.75) !important;
+  color: var(--color-mute) !important;
+}
+.leaflet-control-attribution a {
+  color: var(--color-bone) !important;
+}
+.pin {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--color-accent-soft);
+  box-shadow:
+    0 0 0 6px rgb(124 77 255 / 0.35),
+    0 0 0 16px rgb(124 77 255 / 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

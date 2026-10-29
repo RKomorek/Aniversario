@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Convite de aniversário
 
-## Getting Started
+Site-convite para o meu aniversário. Em vez de um texto genérico no WhatsApp, cada convidado abre uma página com a cara do evento: data, mapa, calendário e confirmação de presença.
 
-First, run the development server:
+Também entra no portfólio como um produto pequeno, ponta a ponta — da abertura do convite até o RSVP.
+
+**Quando:** sábado, 7 de novembro de 2026, 12h  
+**Onde:** Nova Suíça, Goiânia — GO
+
+## O que o convite faz
+
+- Abertura com splash antes de entrar na página
+- Data, horário e endereço em um layout próprio
+- Mapa interativo (Leaflet) e atalhos para Google Maps, Waze e Apple Maps
+- Adicionar o evento ao calendário (Google, Outlook, `.ics`)
+- Formulário de RSVP persistido no Supabase
+- Painel em `/admin` para acompanhar as confirmações
+
+## Stack
+
+- [Next.js](https://nextjs.org) 16 (App Router)
+- React 19 e Tailwind CSS 4
+- [Supabase](https://supabase.com) para as confirmações
+- [Leaflet](https://leafletjs.com) / react-leaflet no mapa
+- Deploy na [Vercel](https://vercel.com)
+
+## Desenvolvimento
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000). O painel de confirmações fica em `/admin`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Variáveis locais (arquivo `.env.local`, não versionado):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-## Learn More
+Na Vercel, configure as mesmas chaves do Supabase no projeto. Sem elas o site sobe, mas o RSVP não grava.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Cada push em `master` gera um deploy de produção. O gerenciador de pacotes no ambiente da Vercel é o padrão do Next.js (`npm`); localmente o fluxo continua com `pnpm`.

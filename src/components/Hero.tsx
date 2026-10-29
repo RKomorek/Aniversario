@@ -62,9 +62,11 @@ export default function Hero() {
         </div>
 
         <div className="space-y-6">
-          <p className="hero-in text-xs uppercase tracking-[0.3em] text-accent-soft" style={d(300)}>
-            Você está convidado
-          </p>
+          <div className=" px-2 py-1 rounded-xl bg-accent-soft/25 w-fit border border-accent-soft/50">
+            <p className="hero-in text-xs uppercase tracking-[0.3em] text-white" style={d(300)}>
+              Você está convidado
+            </p>
+          </div>
           <h1
             className="hero-in whitespace-nowrap font-dot text-[24vw] font-bold leading-[0.8] tracking-tight sm:text-[11rem] lg:text-[13rem]"
             style={d(500)}
